@@ -9,49 +9,49 @@ class SLL:
         self.head = None 
 
     def insertByIndex(self, data, index=-1):
-        newNode = Node(data) 
+        newNode = Node(data)
 
         if self.head is None:
             if index == 0 or index == -1:
                 self.head = newNode 
             else:
-                print("Error: index out of range, no Head") 
+                print("Error: index out of range, no Head")
         elif index == 0:
             newNode.next = self.head 
             self.head = newNode 
         elif index == -1:
-            lastNode = self.head 
-            while lastNode.next:
-                lastNode = lastNode.next 
+            node = self.head 
+            while node.next:
+                node = node.next 
+            lastNode = node 
             lastNode.next = newNode 
         elif index > 0:
-            #10 20 30 40 50->None
-            prevNode = self.head
+            prevNode = self.head 
             for _ in range(index - 1):
-                if not prevNode.next:
-                    print("Error: index out of range, has Head")
-                    return 
-                prevNode = prevNode.next
+                if prevNode.next is None:
+                    print("Error: index out range, has Head")
+                    return
+                prevNode = prevNode.next 
             newNode.next = prevNode.next 
             prevNode.next = newNode
         else:
-            print("Error: Invalid index, index < -1")
+            print("Error: index < -1")
 
     def readSLL(self):
-        node = self.head 
-        while node:
-            print(node.data, end=" ")
-            node = node.next
+        currNode = self.head 
+        while currNode:
+            print(currNode.data, end=" ")
+            currNode = currNode.next 
+
         
-    
 if __name__ == "__main__":
     sll = SLL() 
 
     data = list(range(1, 6))
-
     for datum in data:
-        sll.insertByIndex(datum, -1) 
+        sll.insertByIndex(datum)
 
-    sll.insertByIndex(100, -5)
+    sll.insertByIndex(200, 5)
 
     sll.readSLL()
+            
